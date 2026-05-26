@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.aider*
+# Environment & secrets
+.env
+
+# Uploads & temp data
+data/uploads/
+cookies.txt

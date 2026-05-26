@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "initialized": true,
+  "projects": [
+    {
+      "title": "PMII UNUJA",
+      "description": "Website resmi PMII Komisariat Universitas Nurul Jadid",
+      "tags": "Laravel, PHP",
+      "thumbnail": "/uploads/c5882550-bbca-4704-9c2d-75d7f1c8eb82.jpg",
+      "demoUrl": "https://pmiiunuja.app",
+      "id": "c66f213a-ef7f-4a62-9bcf-bad6883f4be5",
+      "slug": "pmii-unuja",
+      "createdAt": "2026-05-25T21:42:15.444Z",
+      "updatedAt": "2026-05-25T22:06:19.027Z"
+    },
+    {
+      "title": "Trust Vibe Beauty",
+      "description": "Aplikasi pendeteksi produk di Tokopedia melalui ulasan/review",
+      "tags": "React",
+      "thumbnail": "/uploads/f39266ce-bf86-4d6b-a9f0-7268fb2cd9f5.jpg",
+      "demoUrl": "https://trustvibe-beauty-301598002408.asia-southeast1.run.app/",
+      "id": "a40f49d9-9e47-4691-aef0-a8122e878f86",
+      "slug": "trust-vibe-beauty",
+      "createdAt": "2026-05-25T22:09:57.518Z",
+      "updatedAt": "2026-05-25T22:09:57.518Z"
+    }
+  ]
+}

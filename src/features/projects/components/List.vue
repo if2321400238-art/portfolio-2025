@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { sanitizeHtml } from "../../../utils/sanitizeHtml";
 
 export interface Props {
   title?: string;
@@ -12,13 +13,15 @@ const props = defineProps<Props>();
 const classes = computed(() => {
   return ["list", `list-size-${props.size ?? "md"}`];
 });
+
+const sanitizedItems = computed(() => props.items.map((item) => sanitizeHtml(item)));
 </script>
 
 <template>
   <div :class="classes">
     <h3 v-if="props.title" class="list-title">{{ props.title }}</h3>
     <ul class="list-items">
-      <li v-for="item in props.items" :key="item" class="list-item" v-html="item"></li>
+      <li v-for="(item, index) in sanitizedItems" :key="`${index}-${item}`" class="list-item" v-html="item"></li>
     </ul>
   </div>
 </template>

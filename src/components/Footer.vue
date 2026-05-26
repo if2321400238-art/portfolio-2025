@@ -45,7 +45,7 @@ const showAttribution = import.meta.env.VITE_SHOW_ATTRIBUTION !== "false";
           <div class="footer-top-links-legal">
             <Clickable renderAs="div">
               <Link
-                :href="locale === 'de' ? '/de/privacy' : '/privacy'"
+                :href="locale === 'id' ? '/id/privacy' : '/privacy'"
                 class="footer-link"
                 :external="true"
                 data-cursor="circle-white"
@@ -56,7 +56,7 @@ const showAttribution = import.meta.env.VITE_SHOW_ATTRIBUTION !== "false";
             </Clickable>
             <Clickable renderAs="div">
               <Link
-                :href="locale === 'de' ? '/de/legal' : '/legal'"
+                :href="locale === 'id' ? '/id/legal' : '/legal'"
                 class="footer-link children-unclickable"
                 :external="true"
                 data-cursor="circle-white"
@@ -76,12 +76,12 @@ const showAttribution = import.meta.env.VITE_SHOW_ATTRIBUTION !== "false";
           </p>
           <Clickable renderAs="div">
             <Link
-              href="https://david-hckh.com"
+              href="https://Shahib-hckh.com"
               class="footer-link children-unclickable"
               external
               data-cursor="circle-white"
               data-hoversound="hover"
-              >David Heckhoff</Link
+              >Shahib Kholil</Link
             >
           </Clickable>
         </div>
@@ -100,7 +100,7 @@ const showAttribution = import.meta.env.VITE_SHOW_ATTRIBUTION !== "false";
             >
           </Clickable>
         </div>
-        <p>© {{ new Date().getFullYear() }} David Heckhoff</p>
+        <p>© {{ new Date().getFullYear() }} Shahib Kholil</p>
       </div>
     </div>
   </footer>

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "initialized": true,
+  "projects": [
+    {
+      "slug": "pmii-unuja",
+      "title": "PMII Unuja",
+      "theme": "light",
+      "tags": [
+        "javascript",
+        "html"
+      ],
+      "description": "Website resmi PMII Unuja",
+      "videoBorder": false,
+      "live": "https://pmiiunuja.app",
+      "thumbnail": "",
+      "components": [],
+      "id": "7af78198-de61-415c-b903-c50ad0ac9339",
+      "createdAt": "2026-05-25T08:46:13.102Z",
+      "updatedAt": "2026-05-25T19:47:14.819Z"
+    }
+  ]
+}

@@ -7,17 +7,26 @@ import ProjectContent from "./ProjectContent.vue";
 import Footer from "../../../components/Footer.vue";
 import { locale } from "../../../i18n/store";
 import { lenis } from "../../../composables/useScroll";
+import { getItem } from "../../../composables/useProjectApi";
 
 import type { Locale } from "../../../i18n/types";
+import type { ItemContent } from "../../../content/types";
 
 const loading = ref(true);
-const content = ref(null);
+const content = ref<ItemContent | null>(null);
 const error = ref<Error | null>(null);
 
 const fetchProject = async (project: string | undefined) => {
   try {
-    const module = await projectModules[locale.value as Locale][project as string].default;
-    content.value = module;
+    if (!project) return;
+
+    try {
+      content.value = await getItem(project);
+    } catch {
+      const module = await projectModules[locale.value as Locale][project as string].default;
+      content.value = module;
+    }
+
     loading.value = false;
   } catch (err) {
     error.value = new Error(`Failed to fetch project ${project}`);

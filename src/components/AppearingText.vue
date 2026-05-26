@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref, watch, onBeforeUnmount } from "vue";
+import { computed, ref, watch, onBeforeUnmount } from "vue";
 import gsap from "gsap";
 import { BREAKPOINTS } from "../utils/sizes";
+import { sanitizeHtml } from "../utils/sanitizeHtml";
 
 const props = defineProps<{
   text: string;
@@ -19,6 +20,9 @@ const FLICKER_CHARACTER_POOL = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 const displayText = ref("");
 let currentTimeline: gsap.core.Timeline | null = null;
 let matchMedia: gsap.MatchMedia | null = null;
+
+const sanitizedDisplayText = computed(() => sanitizeHtml(displayText.value));
+const sanitizedText = computed(() => sanitizeHtml(props.text));
 
 const randomChar = () => FLICKER_CHARACTER_POOL[Math.floor(Math.random() * FLICKER_CHARACTER_POOL.length)];
 
@@ -130,8 +134,8 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="appearing-text">
-    <p class="appearing-text-value" v-html="displayText"></p>
-    <p class="appearing-text-clone" aria-hidden="true" v-html="props.text"></p>
+    <p class="appearing-text-value" v-html="sanitizedDisplayText"></p>
+    <p class="appearing-text-clone" aria-hidden="true" v-html="sanitizedText"></p>
   </div>
 </template>
 

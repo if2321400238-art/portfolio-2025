@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { sanitizeHtml } from "../../../utils/sanitizeHtml";
 
 export interface Props {
   title?: string;
@@ -14,14 +15,16 @@ const classes = computed(() => {
     "text-with-title": !!props.title,
   };
 });
+
+const sanitizedText = computed(() => sanitizeHtml(props.text));
 </script>
 
 <template>
   <div :class="classes" v-if="props.title">
     <h3 class="text-title">{{ props.title }}</h3>
-    <p class="text-content" v-html="props.text"></p>
+    <p class="text-content" v-html="sanitizedText"></p>
   </div>
-  <p v-else class="text" v-html="props.text"></p>
+  <p v-else class="text" v-html="sanitizedText"></p>
 </template>
 
 <style scoped lang="scss">

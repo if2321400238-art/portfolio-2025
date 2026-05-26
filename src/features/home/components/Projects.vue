@@ -7,22 +7,30 @@ import NotchSection from "../../../components/NotchSection.vue";
 import Banner from "../../../components/Banner.vue";
 import { t } from "../../../i18n/utils/translate";
 import { isFeatureEnabled } from "../../../utils/features";
+import { listItems, toPreview } from "../../../composables/useProjectApi";
 
-import type { ProjectPreview } from "../../../content/types";
+import type { ItemPreview } from "../../../content/types";
 
-const loadedPreviews = ref<ProjectPreview[] | null>(null);
+const loadedPreviews = ref<ItemPreview[] | null>(null);
 
 const emit = defineEmits<{
-  (e: "loaded", previews: ProjectPreview[]): void;
+  (e: "loaded", previews: ItemPreview[]): void;
 }>();
 
 const loadPreviews = async () => {
-  if (!locale.value) return;
-  const func = previews[locale.value as keyof typeof previews];
-  if (!func) return;
-  const module = await func();
-  loadedPreviews.value = module.default;
-  emit("loaded", module.default);
+  try {
+    const projects = await listItems();
+    const previewList = projects.map(toPreview);
+    loadedPreviews.value = previewList;
+    emit("loaded", previewList);
+  } catch {
+    if (!locale.value) return;
+    const func = previews[locale.value as keyof typeof previews];
+    if (!func) return;
+    const module = await func();
+    loadedPreviews.value = module.default;
+    emit("loaded", module.default);
+  }
 };
 
 watch(locale, loadPreviews);

@@ -14,9 +14,15 @@ import { useScroll } from "./composables/useScroll";
 import { projectVisible } from "./composables/useRouteObserver";
 import ProjectBackground from "./features/projects/components/ProjectBackground.vue";
 import { useClickSound } from "./features/sounds/composables/useClickSounds";
+import AdminPage from "./pages/admin/AdminPage.vue";
+import AdminLoginPage from "./pages/admin/AdminLoginPage.vue";
+import { path } from "./composables/useRouteObserver";
+import { computed } from "vue";
 //import { useHoverSound } from "./features/sounds/composables/useHoverSounds";
 
 const { isTransitioning } = useProjectTransition();
+const isAdminRoute = computed(() => path.value === "/admin");
+const isAdminLoginRoute = computed(() => path.value === "/admin/login");
 
 useTranslations();
 usePreloader();
@@ -32,26 +38,31 @@ const { isTouch } = useAgent();
 <template>
   <Header />
 
-  <!-- main page -->
-  <div :class="{ 'home-wrapper-projectIsReady': projectVisible }">
-    <Home />
-  </div>
+  <AdminPage v-if="isAdminRoute" />
+  <AdminLoginPage v-else-if="isAdminLoginRoute" />
 
-  <!-- overlay page -->
-  <ProjectBackground />
-  <div
-    class="project-wrapper"
-    :class="{
-      'project-wrapper-visible': projectVisible,
-      'project-wrapper-transitioning': isTransitioning,
-    }"
-  >
-    <div class="project-content">
-      <Project />
+  <template v-else>
+    <!-- main page -->
+    <div :class="{ 'home-wrapper-projectIsReady': projectVisible }">
+      <Home />
     </div>
-  </div>
 
-  <Cursor v-if="!isTouch" />
+    <!-- overlay page -->
+    <ProjectBackground />
+    <div
+      class="project-wrapper"
+      :class="{
+        'project-wrapper-visible': projectVisible,
+        'project-wrapper-transitioning': isTransitioning,
+      }"
+    >
+      <div class="project-content">
+        <Project />
+      </div>
+    </div>
+
+    <Cursor v-if="!isTouch" />
+  </template>
 </template>
 
 <style lang="scss">

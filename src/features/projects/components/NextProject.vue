@@ -2,10 +2,10 @@
 import ArrowRight from "../../../components/icons/ArrowRight.vue";
 import { t } from "../../../i18n/utils/translate";
 
-import type { ProjectPreview } from "../../../content/types";
+import type { ItemPreview } from "../../../content/types";
 
 const { project } = defineProps<{
-  project: ProjectPreview;
+  project: ItemPreview;
 }>();
 </script>
 

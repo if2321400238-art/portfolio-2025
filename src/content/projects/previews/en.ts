@@ -5,20 +5,20 @@ import thumbnailPokedex from "../../../assets/thumbnails/pokedex.webp";
 import thumbnailSharkie from "../../../assets/thumbnails/sharkie.webp";
 import thumbnailStreakon from "../../../assets/thumbnails/streakon.webp";
 
-import type { ProjectPreview } from "../../types";
+import type { ItemPreview } from "../../types";
 
 export default [
   {
     title: "StreakOn",
     slug: "streakon",
     thumbnail: thumbnailStreakon,
-    description: "Social habit tracking app",
+    description: "Stay consistent with daily habits",
   },
   {
     title: "CubeWar",
     slug: "cubewar",
     thumbnail: thumbnailCubeWar,
-    description: "Multiplayer strategy game",
+    description: "Browser-based multiplayer strategy game",
   },
   {
     title: "Quibbo",
@@ -30,18 +30,12 @@ export default [
     title: "Sharkie",
     slug: "sharkie",
     thumbnail: thumbnailSharkie,
-    description: "2D adventure game",
+    description: "2D underwater adventure game",
   },
-  /**  {
-    title: "WebGL Particles",
-    slug: "particles",
-    thumbnail: thumbnailParticles,
-    description: "Dynamic 3D particles",
-  }, */
   {
     title: "Pokédex",
     slug: "pokedex",
     thumbnail: thumbnailPokedex,
-    description: "Open-source learning project",
+    description: "Open source learning project",
   },
-] as const satisfies ProjectPreview[];
+] as const satisfies ItemPreview[];

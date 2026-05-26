@@ -10,14 +10,14 @@ import { t } from "../../../i18n/utils/translate";
 import { social } from "../../../content/social";
 import Plus from "../../../components/icons/Plus.vue";
 
-import type { ProjectPreview } from "../../../content/types";
+import type { ItemPreview } from "../../../content/types";
 
 const tlRef = ref<gsap.core.Timeline | null>(null);
 const wrapperRef = ref<HTMLDivElement | null>(null);
 const imageRef = ref<HTMLImageElement | null>(null);
 
 const props = defineProps<{
-  preview?: ProjectPreview;
+  preview?: ItemPreview;
 }>();
 
 onMounted(async () => {
@@ -76,6 +76,19 @@ onUnmounted(() => {
         <h3 class="preview-card-title">{{ props.preview.title }}</h3>
         <p class="preview-card-description">{{ props.preview.description }}</p>
       </div>
+      <a
+        v-if="props.preview.demoUrl"
+        :href="props.preview.demoUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="preview-card-demo"
+        data-cursor="arrow-external"
+        data-sound="click"
+        data-hoversound="hover"
+        @click.stop
+      >
+        Lihat Demo →
+      </a>
     </div>
   </Link>
 
@@ -236,6 +249,22 @@ onUnmounted(() => {
     font-size: var(--font-size-md);
     color: var(--color-text-300);
     font-weight: 500;
+  }
+
+  &-demo {
+    display: inline-block;
+    margin-top: var(--space-xs);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-accent-400);
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+
+    @include mixins.hover {
+      &:hover {
+        opacity: 0.7;
+      }
+    }
   }
 }
 </style>

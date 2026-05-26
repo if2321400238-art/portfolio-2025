@@ -178,6 +178,14 @@ const getInTouchClassNames = computed(() => {
     gap: var(--space-sm);
   }
 
+  &-admin-link {
+    display: none;
+
+    @include mixins.mq("md") {
+      display: flex;
+    }
+  }
+
   &-music-toggle {
     display: flex;
   }

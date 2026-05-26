@@ -7,8 +7,6 @@ import { sources } from "../sources";
 import type { Texture } from "three";
 import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
 
-const isProd = import.meta.env.PROD;
-
 type ResourceType = Texture | GLTF;
 
 class Resources extends EventEmitter<{
@@ -63,14 +61,9 @@ class Resources extends EventEmitter<{
     if (this.loaded === this.toLoad) {
       this.isReady = true;
       this.emit("ready");
-      this.log("All resources loaded");
     }
   }
 
-  log(message: string) {
-    if (isProd) return;
-    console.log(`[Resources] ${message}`);
-  }
 }
 
 export const resources = new Resources();

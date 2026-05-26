@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
+import { computed, ref, onMounted, onUnmounted } from "vue";
 import { transitions } from "../../../animations";
 import { t } from "../../../i18n/utils/translate";
 import Social from "../../../components/Social.vue";
+import { sanitizeHtml } from "../../../utils/sanitizeHtml";
 
 const contactElement = ref<HTMLElement | null>(null);
+const sanitizedHeading = computed(() => sanitizeHtml(t("lets-work-together")));
 
 onMounted(() => {
   if (contactElement.value) {
@@ -20,7 +22,7 @@ onUnmounted(() => {
 <template>
   <div class="contact grid" ref="contactElement">
     <div class="contact-content">
-      <h2 class="contact-title" v-html="t('lets-work-together')"></h2>
+      <h2 class="contact-title" v-html="sanitizedHeading"></h2>
       <Social variant="background" />
     </div>
   </div>
