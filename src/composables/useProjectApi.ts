@@ -1,4 +1,10 @@
-import type { BackendItemInput, BackendItemPreview, BackendItemRecord } from "../types/backend";
+import type {
+  BackendItemInput,
+  BackendItemPreview,
+  BackendItemRecord,
+  BackendProjectInput,
+  BackendProjectRecord,
+} from "../types/backend";
 
 export const apiBaseUrl = import.meta.env.DEV ? "" : import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") ?? "";
 
@@ -81,12 +87,27 @@ export async function listItems() {
   return request<BackendItemRecord[]>("/api/items");
 }
 
+export async function listProjects() {
+  return request<BackendProjectRecord[]>("/api/items");
+}
+
 export async function getItem(slug: string) {
   return request<BackendItemRecord>(`/api/items/${slug}`);
 }
 
+export async function getProject(slug: string) {
+  return request<BackendProjectRecord>(`/api/items/${slug}`);
+}
+
 export async function createItem(input: BackendItemInput) {
   return request<BackendItemRecord>("/api/items", {
+    method: "POST",
+    body: JSON.stringify(input),
+  });
+}
+
+export async function createProject(input: BackendProjectInput) {
+  return request<BackendProjectRecord>("/api/items", {
     method: "POST",
     body: JSON.stringify(input),
   });
@@ -99,6 +120,13 @@ export async function updateItem(slug: string, input: BackendItemInput) {
   });
 }
 
+export async function updateProject(slug: string, input: BackendProjectInput) {
+  return request<BackendProjectRecord>(`/api/items/${slug}`, {
+    method: "PUT",
+    body: JSON.stringify(input),
+  });
+}
+
 export async function patchItem(slug: string, input: Partial<BackendItemInput>) {
   return request<BackendItemRecord>(`/api/items/${slug}`, {
     method: "PATCH",
@@ -106,7 +134,20 @@ export async function patchItem(slug: string, input: Partial<BackendItemInput>) 
   });
 }
 
+export async function patchProject(slug: string, input: Partial<BackendProjectInput>) {
+  return request<BackendProjectRecord>(`/api/items/${slug}`, {
+    method: "PATCH",
+    body: JSON.stringify(input),
+  });
+}
+
 export async function deleteItem(slug: string) {
+  await request<void>(`/api/items/${slug}`, {
+    method: "DELETE",
+  });
+}
+
+export async function deleteProject(slug: string) {
   await request<void>(`/api/items/${slug}`, {
     method: "DELETE",
   });
